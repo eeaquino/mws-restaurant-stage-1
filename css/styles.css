@@ -69,14 +69,14 @@ nav {
     display: flex;
 }
 
-nav h1 {
+nav h3 {
     margin: auto;
     align-self: center;
     color: #fff;
     letter-spacing: .15em;
 }
 
-nav h1 a {
+nav h3 a {
     color: #fff;
     font-size: 14pt;
     font-weight: bold;
@@ -202,7 +202,7 @@ nav h1 a {
     object-fit: cover;
 }
 
-#restaurants-list li h1 {
+#restaurants-list li h3 {
     color: rgb(63, 76, 80);
     font-family: Arial, sans-serif;
     font-size: 14pt;
