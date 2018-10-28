@@ -151,17 +151,25 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
-  const name = document.createElement('p');
+    li.classList.add("card-2");
+    const cont = document.createElement('div');
+    cont.classList.add('review-head');
+  const name = document.createElement('div');
+  name.classList.add('review-name');
   name.innerHTML = review.name;
-  li.appendChild(name);
+    cont.appendChild(name);
+    const rating = document.createElement('div');
+    rating.classList.add('review-rate');
+    rating.innerHTML = getStars(review);
+    rating.setAttribute('aria-labelledby', `rating-${review.id}`);
+    cont.appendChild(rating);
 
-  const date = document.createElement('p');
+  const date = document.createElement('div');
+    date.classList.add('review-date');
   date.innerHTML = review.date;
-  li.appendChild(date);
+    cont.appendChild(date);
 
-  const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
-  li.appendChild(rating);
+    li.appendChild(cont);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
@@ -170,6 +178,22 @@ createReviewHTML = (review) => {
   return li;
 }
 
+getStars = (review) =>
+{
+    var stars = review.rating;
+    let fullStars = Math.floor(stars);
+    let noStar = 5 - Math.ceil(stars);
+    let html = '';
+    for (let c = 0; c < fullStars; c++) {
+        html += '<i class="fas fa-star" aria-hidden></i>';
+    }
+    html += Math.round(stars * 10) % 10 !== 0 ? '<i class="fas fa-star-half-alt" aria-hidden></i>' : '';
+    for (let c = 0; c < noStar; c++) {
+        html += '<i class="far fa-star" aria-hidden></i>';
+    }
+    html += `<span class="rating-label" id="rating-${review.id}">${stars} Star Rating</span>`;
+    return html;
+};
 /**
  * Add restaurant name to the breadcrumb navigation menu
  */
