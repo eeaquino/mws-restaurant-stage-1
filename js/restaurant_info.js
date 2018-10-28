@@ -90,7 +90,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+    image.className = 'restaurant-img';
+    image.setAttribute("alt", "");
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
   const cuisine = document.getElementById('restaurant-cuisine');
@@ -185,11 +186,11 @@ getStars = (review) =>
     let noStar = 5 - Math.ceil(stars);
     let html = '';
     for (let c = 0; c < fullStars; c++) {
-        html += '<i class="fas fa-star" aria-hidden></i>';
+        html += '<i class="fas fa-star" aria-hidden="true"></i>';
     }
-    html += Math.round(stars * 10) % 10 !== 0 ? '<i class="fas fa-star-half-alt" aria-hidden></i>' : '';
+    html += Math.round(stars * 10) % 10 !== 0 ? '<i class="fas fa-star-half-alt" aria-hidden="true"></i>' : '';
     for (let c = 0; c < noStar; c++) {
-        html += '<i class="far fa-star" aria-hidden></i>';
+        html += '<i class="far fa-star" aria-hidden="true"></i>';
     }
     html += `<span class="rating-label" id="rating-${review.id}">${stars} Star Rating</span>`;
     return html;
