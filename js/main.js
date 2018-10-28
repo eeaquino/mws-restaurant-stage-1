@@ -187,13 +187,13 @@ createRestaurantHTML = (restaurant) =>
 
     const rating = document.createElement('div');
     rating.classList.add('restaurant-rate');
-    rating.innerHTML = getStars(restaurant.reviews,restaurant.id);
+    rating.innerHTML = getStars(restaurant.reviews, restaurant.id);
     rating.setAttribute('aria-labelledby', `rating-${restaurant.id}`);
     li.append(rating);
 
     const innerCont = document.createElement('div');
     innerCont.classList.add('restaurant-cont');
-    
+
     const more = document.createElement('a');
     more.innerHTML = 'View Details <i class="fas fa-chevron-right" aria-hidden="true"></i>';
     more.href = DBHelper.urlForRestaurant(restaurant);
@@ -212,7 +212,6 @@ createRestaurantHTML = (restaurant) =>
     address.innerHTML = restaurant.address;
     innerCont.append(address);
 
-    
     li.append(innerCont);
     return li;
 };
@@ -220,7 +219,7 @@ createRestaurantHTML = (restaurant) =>
 /**
  * Add markers for current restaurants to the map.
  */
-getStars = (reviews,id) =>
+getStars = (reviews, id) =>
 {
     var stars = reviews.reduce(({ count, sum }, review) =>
         {
