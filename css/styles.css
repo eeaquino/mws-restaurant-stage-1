@@ -12,7 +12,7 @@ body, td, th, p {
 body {
     background-color: #fdfdfd;
     margin: 0;
-    position: relative;    
+    position: relative;
 }
 
 ul, li {
@@ -69,14 +69,14 @@ nav {
     display: flex;
 }
 
-nav h3 {
+nav h3, nav h1, nav h2 {
     margin: auto;
     align-self: center;
     color: #fff;
     letter-spacing: .15em;
 }
 
-nav h3 a {
+nav h3 a, nav h1 a, nav h2 a {
     color: #fff;
     font-size: 14pt;
     font-weight: bold;

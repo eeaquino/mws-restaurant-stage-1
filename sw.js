@@ -1,4 +1,4 @@
-const staticCacheName = 'pages-cache-v1';
+const staticCacheName = 'pages-cache-v2';
 const filesToCache = [
     "https://use.fontawesome.com/releases/v5.4.1/css/all.css",
     "https://unpkg.com/leaflet@1.3.1/dist/leaflet.css",
@@ -54,7 +54,7 @@ self.addEventListener('fetch',
                 return cache.match(splitUrl).then(function(response) {
                     if (response) return response;
 
-                    return fetch(request).then(function(response) {
+                    return fetch(event.request).then(function(response) {
                         cache.put(splitUrl, response.clone());
                         return response;
                     });

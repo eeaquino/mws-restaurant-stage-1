@@ -136,7 +136,7 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) =>
 /**
  * Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) =>
+fillReviewsHTML = (reviews = self.restaurant.reviews,id = self.restaurant.id) =>
 {
     const container = document.getElementById('reviews-container');
     const title = document.createElement('h2');
@@ -150,9 +150,11 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) =>
         return;
     }
     const ul = document.getElementById('reviews-list');
+    var x = 0;
     reviews.forEach(review =>
     {
-        ul.appendChild(createReviewHTML(review));
+        x++;
+        ul.appendChild(createReviewHTML(review,x,id));
     });
     container.appendChild(ul);
 }
@@ -160,7 +162,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) =>
 /**
  * Create review HTML and add it to the webpage.
  */
-createReviewHTML = (review) =>
+createReviewHTML = (review,id,restaurantId) =>
 {
     const li = document.createElement('li');
     li.classList.add("card-2");
@@ -172,8 +174,8 @@ createReviewHTML = (review) =>
     cont.appendChild(name);
     const rating = document.createElement('div');
     rating.classList.add('review-rate');
-    rating.innerHTML = getStars(review);
-    rating.setAttribute('aria-labelledby', `rating-${review.id}`);
+    rating.innerHTML = getStars(review,id,restaurantId);
+    rating.setAttribute('aria-labelledby', `rating-${id}-${restaurantId}`);
     cont.appendChild(rating);
 
     const date = document.createElement('div');
@@ -190,7 +192,7 @@ createReviewHTML = (review) =>
     return li;
 }
 
-getStars = (review) =>
+getStars = (review,id,restaurantId) =>
 {
     var stars = review.rating;
     let fullStars = Math.floor(stars);
@@ -203,7 +205,7 @@ getStars = (review) =>
     for (let c = 0; c < noStar; c++) {
         html += '<i class="far fa-star" aria-hidden="true"></i>';
     }
-    html += `<span class="rating-label" id="rating-${review.id}">${stars} Star Rating</span>`;
+    html += `<span class="rating-label" id="rating-${id}-${restaurantId}">${stars} Star Rating</span>`;
     return html;
 };
 /**
